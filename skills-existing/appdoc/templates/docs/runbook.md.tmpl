@@ -1,0 +1,52 @@
+# Runbook — {{project_name}}
+
+Operator-focused reference. "When X breaks, do Y." Not for development — see [../CLAUDE.md](../CLAUDE.md) for that.
+
+## Health check
+
+Quick signals that the app is alive:
+
+- `curl -I {{health_url_or_TODO}}` → expect `2xx` or `307`
+- `curl {{health_api_or_TODO}}` → expect `{"status":"ok"}`
+- Container status: `{{container_status_command}}`
+
+## Common failures and fixes
+
+### "Can't connect to database"
+- Check the DB container: `docker compose ps {{db_service_name}}`
+- Test the connection: `docker exec -it {{db_container}} psql -U {{user}} -d {{db}} -c "SELECT 1"`
+- Env var `DATABASE_URL` correct? `docker compose exec {{app_service}} env | grep DATABASE_URL`
+
+### "OAuth redirect mismatch" (if applicable)
+- Verify redirect URI on the OAuth provider matches the current `NEXTAUTH_URL` (or equivalent).
+
+### "Emails not sending" (if SMTP used)
+- Check SMTP credentials are set: `docker compose exec {{app_service}} env | grep SMTP`
+- Test SMTP manually from the container.
+
+### "App container exits immediately"
+- Check logs: `docker compose logs {{app_service}} --tail 50`
+- Most common: missing env var, DB not ready, port already bound.
+
+TODO: add more as incidents happen.
+
+## Backup & restore
+
+{{backup_section — derive from docker-compose backup service if present; else TODO}}
+
+## Logs
+
+- App: `docker compose logs {{app_service}} -f`
+- DB: `docker compose logs {{db_service_name}} -f`
+- System-level (if applicable): `journalctl -u {{service}} -f`
+
+## Escalation
+
+- **On-call / primary**: TODO (name + contact)
+- **Backup contact**: TODO
+
+## Known quirks
+
+TODO: document anything non-obvious operators hit. Examples:
+- "Prisma CLI shim has a wasm path issue in the standalone Next output — use worker container for `prisma db push`"
+- "First daily backup takes ~20s because the rclone cache warms up"

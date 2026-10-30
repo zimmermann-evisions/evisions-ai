@@ -1,0 +1,53 @@
+# Architecture Decision Records
+
+Short markdown files, one per significant decision, capturing the *why* behind non-obvious choices.
+
+## What is an ADR?
+
+An ADR is a ≤1-page record with three parts:
+
+1. **Context** — the problem we faced and the constraints we had.
+2. **Decision** — what we chose.
+3. **Consequences** — what that choice buys us and what it costs.
+
+ADRs are **numbered sequentially**, **dated**, and **immutable once committed**. If a decision is later reversed, a new ADR supersedes the old one — the old file is NOT rewritten. Historical reasoning stays intact.
+
+## When to write an ADR
+
+Write one whenever you make a decision that:
+- Would be non-obvious to a new reader
+- Has a real alternative that was rejected
+- Would be expensive to reverse
+- Involves a trade-off people might later question
+
+Skip an ADR for routine choices (which icon, which class, which lint rule) — those belong in code.
+
+## How to write one
+
+1. Pick the next number.
+2. Filename: `NNNN-short-slug.md`.
+3. Template:
+
+```markdown
+# NNNN — <decision title>
+
+**Status:** Accepted · **Date:** YYYY-MM-DD
+
+## Context
+What problem are we solving? What constraints apply? What options did we consider?
+
+## Decision
+What did we choose? Be specific.
+
+## Consequences
+What does this buy us?
+What does it cost or rule out?
+What follow-up work does it imply?
+
+## Alternatives considered
+Brief list of other options and why they lost.
+```
+
+## Index
+
+- [0001 — {{first_decision_title_or_example}}](./0001-{{slug}}.md)

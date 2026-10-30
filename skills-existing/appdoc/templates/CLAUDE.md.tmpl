@@ -1,0 +1,65 @@
+# {{project_name}} — developer context
+
+{{one_line_purpose}}. This file is for developers (human and AI) working on the codebase.
+
+---
+
+## Quick facts
+
+| | |
+|---|---|
+| **URL** | {{live_url_or_TODO}} |
+| **Repo** | {{repo_url_or_TODO}} |
+| **Owner / tech lead** | TODO |
+| **Deploy path** | {{deploy_path_or_TODO}} |
+
+## Stack
+
+{{stack_table — rows for framework, language, DB, auth, hosting, etc.}}
+
+## Architecture
+
+{{arch_overview — containers, services, network topology; include mermaid or ASCII diagram if helpful}}
+
+## Local dev — onboarding checklist
+
+For a new developer joining this project:
+
+1. **Access needed** (ask the tech lead):
+   - Repo access on {{repo_org_or_TODO}}
+   - SSH access to the deploy server (if you'll deploy)
+   - TODO: other credentials / shared services
+2. **Prerequisites on your machine**:
+   - {{runtime_version — e.g. Node 20+, Python 3.11+}}
+   - Docker (if the project uses containers)
+   - TODO: other local tools
+3. **First-time setup**:
+   ```bash
+   {{setup_commands — derived from scripts + docker-compose}}
+   ```
+4. **Run the app**:
+   ```bash
+   {{run_command}}
+   ```
+5. **Common pitfalls**:
+   - TODO: gotcha-1
+   - TODO: gotcha-2
+
+## Key design decisions
+
+{{pull_highlights_from_adrs_or_leave_pointer}}
+
+See `docs/adr/` for the full record of architectural decisions.
+
+## Conventions
+
+{{conventions — naming, folder structure, code style pointers; derive from existing config files like .eslintrc, prettierrc, pyproject}}
+
+## Troubleshooting
+
+{{quirks_and_known_issues — leave a few empty subsections for future additions}}
+
+## Maintenance
+
+- When the app ships a notable change, update this file the same session. See `~/CLAUDE.md` → "Keep project CLAUDE.md current".
+- For structural changes needing a design-decision record, add a new file under `docs/adr/`.

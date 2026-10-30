@@ -1,0 +1,25 @@
+# Environment variables — {{project_name}}
+
+Every env var this project reads, derived from scanning the code for `process.env.*` / `os.environ[*]` / equivalent. Update this when new env vars are introduced.
+
+| Variable | Required | Dev default | Prod source | Description |
+|---|---|---|---|---|
+{{env_var_rows — populate from code scan}}
+
+## Where they're set
+
+- **Local dev**: `.env` in the project root (copy from `.env.example`)
+- **Production**: `{{prod_env_location — e.g. /root/apps/xxx/.env on the server}}`
+- **CI/CD (if any)**: TODO
+
+## Rotation policy
+
+- Secrets (anything marked ⚠ above): rotate every 90 days or on personnel change.
+- On rotation: update prod `.env` → restart the container → test a round trip.
+
+## Never commit
+
+These patterns must stay out of git — verify `.gitignore` covers:
+- `.env`, `.env.*.local`
+- `*-sa.json`, `*.key`, `*.pem`
+- Any file under `.config/google-api/` or similar secret stores

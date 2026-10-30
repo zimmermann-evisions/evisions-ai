@@ -1,0 +1,71 @@
+# Security & privacy — {{project_name}}
+
+How this app handles authentication, access, data, and legal obligations.
+
+## Data handled
+
+{{data_summary — derived from schema. List tables and what they store. Flag PII explicitly.}}
+
+## Access control
+
+### Roles
+
+{{roles_table — from auth.ts / equivalent}}
+
+### What each role can see/do
+
+{{role_capabilities}}
+
+### Initial role assignment
+
+{{how_new_users_get_roles}}
+
+## Authentication
+
+- **Provider**: {{oauth_provider_or_other}}
+- **Restricted to**: {{domain_restriction_if_any}}
+- **Session model**: {{jwt_or_db_sessions}}
+- **Session expiry**: {{session_ttl_or_TODO}}
+
+## Data retention
+
+- **How long is user data kept?** TODO (define policy; default unlimited is usually not OK under GDPR)
+- **How long are logs kept?** TODO
+- **Automatic purge?** {{purge_jobs_if_any_or_TODO}}
+
+## Anonymity / privacy guarantees
+
+{{anonymity_section_if_applicable — else remove this section}}
+
+If the app has anonymity claims, explain the guarantee at the DB/schema level, not just "we promise". Document the **verification query** to prove the invariant holds.
+
+## GDPR considerations
+
+This app stores personal data about employees (EU residents). GDPR applies. The legal basis, retention, and user rights need to be documented and reviewed.
+
+- **Legal basis for processing**: TODO — typically one of: contract (necessary for employment), legitimate interest, consent.
+- **Data controller**: TODO (usually the employer entity — evisions s.r.o.?)
+- **Data processor**: TODO (any external services: hosting, email, analytics)
+- **Right to deletion**: TODO — describe how a user can request their data be removed, and what the app does to fulfil it.
+- **Right to access / portability**: TODO — can a user export their own data?
+- **Data breach notification**: TODO — process when a breach is suspected.
+- **Cross-border data transfer**: list any non-EU processors (e.g. Google services — usually covered by Google's SCCs).
+
+**This section needs legal review before going live with sensitive data. Don't assume "internal tool = GDPR doesn't apply" — it applies to employee data.**
+
+## Secrets management
+
+- **Where secrets live**: {{secrets_locations}}
+- **What's considered a secret**: DB passwords, OAuth client secrets, SMTP passwords, API keys, service account keys.
+- **Never in**: git history, Slack messages, email, screenshots, tickets.
+- **Rotation cadence**: TODO (recommended: 90d or on personnel change).
+
+## Incident response
+
+If you suspect a breach or data leak:
+
+1. **Do not delete evidence.** Take a snapshot / screenshot first.
+2. Notify: TODO (tech lead, then company leadership).
+3. If personal data is involved: GDPR requires breach notification to the supervisory authority within 72 hours if the breach is likely to result in risk to the affected individuals.
+4. Rotate any credentials that might be compromised.
+5. Document timeline and remediation.

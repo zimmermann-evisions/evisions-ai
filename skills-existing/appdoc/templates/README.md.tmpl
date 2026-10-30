@@ -1,0 +1,34 @@
+# {{project_name}}
+
+{{one_line_purpose}}
+
+{{live_url_if_known}}
+
+## What it does
+
+{{feature_bullets — derive from main pages or API surface}}
+
+## Stack
+
+{{stack_summary — derive from package manifest}}
+
+## Running it
+
+{{local_dev_steps — derive from scripts + docker-compose if present}}
+
+## Documentation
+
+- **[CLAUDE.md](./CLAUDE.md)** — developer + AI-assistant context, architecture, design decisions.
+- **[docs/runbook.md](./docs/runbook.md)** — what to do when something breaks.
+- **[docs/env-reference.md](./docs/env-reference.md)** — every environment variable explained.
+{{include_if_exists docs/user-guide.md}}
+- **[docs/user-guide.md](./docs/user-guide.md)** — how to use the app.
+{{/include}}
+{{include_if_exists docs/security.md}}
+- **[docs/security.md](./docs/security.md)** — security & privacy model.
+{{/include}}
+- **[docs/adr/](./docs/adr/)** — architecture decision records.
+
+## Repository
+
+{{repo_host_info — if known, e.g. `github.com/ai-evisions/xxx`}}
